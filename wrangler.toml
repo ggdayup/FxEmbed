@@ -4,6 +4,9 @@ main = "./dist/worker.js"
 compatibility_date = "2024-11-14"
 send_metrics = false
 
+[vars]
+STANDARD_DOMAIN_LIST = "fixtweet.ggdayup.workers.dev"
+
 # Remove this if not using Cloudflare Analytics Engine
 # analytics_engine_datasets = [
 #   { binding = "AnalyticsEngine" }
