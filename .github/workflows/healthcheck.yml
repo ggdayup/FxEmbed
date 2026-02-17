@@ -1,0 +1,32 @@
+name: Worker Health Check
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check /version endpoint
+        run: |
+          set -euo pipefail
+          URL="https://fixtweet.ggdayup.workers.dev/version"
+          CODE=$(curl -s -o /tmp/version.html -w "%{http_code}" "$URL")
+          echo "HTTP $CODE"
+          test "$CODE" = "200"
+          grep -q "Worker release:" /tmp/version.html
+
+      - name: Check embed endpoint as Slack bot
+        run: |
+          set -euo pipefail
+          URL="https://fixtweet.ggdayup.workers.dev/elonmusk/status/2023409484757147983"
+          CODE=$(curl -s -A "Slackbot-LinkExpanding 1.0 (+https://api.slack.com/robots)" -o /tmp/embed.html -w "%{http_code}" "$URL")
+          echo "HTTP $CODE"
+          test "$CODE" = "200"
+          grep -q "og:title" /tmp/embed.html
+
+      - name: Write summary
+        run: |
+          echo "✅ Healthcheck passed at $(date -u)" >> $GITHUB_STEP_SUMMARY
