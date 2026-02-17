@@ -25,6 +25,21 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          STANDARD_DOMAIN_LIST: "workers.dev,fixtweet.ggdayup.workers.dev"
+          STANDARD_BSKY_DOMAIN_LIST: "bsky.ggdayup.workers.dev"
+          STANDARD_TIKTOK_DOMAIN_LIST: "tiktok.ggdayup.workers.dev"
+          DIRECT_MEDIA_DOMAINS: "d.fixtweet.ggdayup.workers.dev"
+          TEXT_ONLY_DOMAINS: "t.fixtweet.ggdayup.workers.dev"
+          INSTANT_VIEW_DOMAINS: "i.fixtweet.ggdayup.workers.dev"
+          GALLERY_DOMAINS: "g.fixtweet.ggdayup.workers.dev"
+          FORCE_MOSAIC_DOMAINS: "m.fixtweet.ggdayup.workers.dev"
+          MOSAIC_DOMAIN_LIST: "mosaic.fixtweet.ggdayup.workers.dev"
+          MOSAIC_BSKY_DOMAIN_LIST: "mosaic.bsky.ggdayup.workers.dev"
+          POLYGLOT_DOMAIN_LIST: "polyglot.fixtweet.ggdayup.workers.dev"
+          API_HOST_LIST: "api.fixtweet.ggdayup.workers.dev"
+          GIF_TRANSCODE_DOMAIN_LIST: "gif.fixtweet.ggdayup.workers.dev"
+          OLD_EMBED_DOMAINS: "o.fixtweet.ggdayup.workers.dev"
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
