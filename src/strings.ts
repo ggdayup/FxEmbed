@@ -244,6 +244,10 @@ Disallow: /
 User-agent: ChatGPT-User
 Disallow:
 
+# Allow Slack unfurl bot to fetch status pages for previews
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
 User-agent: *
 Allow: /$
 Disallow: /*/status
